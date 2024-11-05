@@ -66,6 +66,14 @@ suite
     while (i < l) out = (101 * out + str.charCodeAt(i++)) >>> 0
     const c = 'go' + out;
 })
+.add('goober optimized HASH with ASM hints', () => {
+    let i = 0, l = str.length | 0, out = 11;
+    while (i < l) {
+        out = Math.imul(101, out) + str.charCodeAt(i) >>> 0;
+        i = i + 1 | 0;
+    }
+    const c = 'go' + out;
+})
 .add('xxh32', () => {
     const c = 'go' + xxh32(str);
 })
